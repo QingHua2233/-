@@ -1,4 +1,5 @@
 ---
+draft: true
 date: 2024-03-24
 title: 新功能
 description: 了解本主题提供的更多特色功能。

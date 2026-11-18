@@ -1,0 +1,17 @@
+---
+import getUrl from '@/utils/getUrl';
+const links=[['论坛首页','/'],['讨论区','/blog/1'],['个人博客','/archive/1'],['留言板','/message'],['关于本站','/about']];
+const current=Astro.url.pathname;
+---
+<header class="forum-header">
+  <div class="forum-banner">
+    <img class="banner-computer" src={getUrl('/retro/computer.svg')} alt="像素风复古电脑" width="178" height="132" />
+    <a class="banner-copy" href={getUrl('/')}><h1>怀旧网络论坛</h1><p>欢迎来到我的小小互联网社区</p></a>
+    <img class="banner-landscape" src={getUrl('/retro/skyline.svg')} alt="" width="610" height="156" />
+    <span class="banner-note">连接彼此 · 记录热爱</span>
+  </div>
+  <nav class="forum-nav" aria-label="主导航">
+    <div class="nav-links">{links.map(([label,url])=><a class:list={{active:current===url}} href={getUrl(url)} aria-current={current===url?'page':undefined}>{label}</a>)}</div>
+    <form class="forum-search" action={getUrl('/search')} method="get" role="search"><label class="sr-only" for="forum-query">搜索文章</label><input id="forum-query" type="search" name="q" placeholder="搜索帖子…" /><button type="submit">搜索</button></form>
+  </nav>
+</header>
