@@ -25,7 +25,7 @@ import {t} from '@/i18n/utils'
     </div>
   </aside>
   <p id="searchReadout"></p>
-  <section aria-label="Search Results">
+  <section aria-label="搜索结果">
     <div id="resultsList"></div>
   </section>
 </IndexPage>
@@ -151,7 +151,7 @@ import {t} from '@/i18n/utils'
       try {
         const res = await fetch(getUrl("/search.json"))
         if (!res.ok) {
-          throw new Error("Something went wrong...Please try again.");
+          throw new Error("加载失败，请稍后重试。");
         }
         SEARCH_DATA = await res.json()
       } catch (e) {

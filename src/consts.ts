@@ -23,14 +23,14 @@ import type {AnalyticsConfig} from "./types/analyticsTypes"
  *    All tags will be displayed in single page "/tags".
  */
 export const site = {
-  title: 'Astro Theme Yi', // required
+  title: '个人博客', // required
   favicon: '/favicon.svg', // required
-  description: 'Welcome to my independent blog website! ',
+  description: '欢迎来到我的独立博客！',
   author: "Astro-Yi", // required
   avatar: '/avatar.png', // required
-  url: 'https://astro-yi-nu.vercel.app', // required
+  url: 'https://273915.xyz', // required
   baseUrl: '', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
-  motto: 'Actions speak louder than words.',
+  motto: '行动胜于言语。',
   recentBlogSize: 5,
   archivePageSize: 25,
   postPageSize: 10,
@@ -49,7 +49,7 @@ export const site = {
  * memosPageSize {number} 10
  */
 export const config = {
-  lang: 'en' as 'en' | 'zh-cn' | 'zh-hant' | 'cs', // en | zh-cn | zh-hant | cs
+  lang: 'zh-cn' as 'en' | 'zh-cn' | 'zh-hant' | 'cs', // en | zh-cn | zh-hant | cs
   codeFoldingStartLines: 16, // Need to re-run the project to take effect
 
   // memos config
@@ -67,47 +67,47 @@ export const config = {
  */
 export const categories = [
   {
-    name: "Blog",
+    name: "博客",
     iconClass: "ri-draft-line",
     href: "/blog/1",
   },
   {
-    name: "Feed",
+    name: "动态",
     iconClass: "ri-lightbulb-flash-line",
     href: "/feed/1",
   },
   // {
-  //   name: "Memos",
+  //   name: "随笔",
   //   iconClass: "ri-quill-pen-line",
   //   href: "/memos",
   // },
   {
-    name: "Archive",
+    name: "归档",
     iconClass: "ri-archive-line",
     href: "/archive/1",
   },
   {
-    name: "Message",
+    name: "留言",
     iconClass: "ri-chat-1-line",
     href: "/message",
   },
   {
-    name: "Search",
+    name: "搜索",
     iconClass: "ri-search-line",
     href: "/search",
   },
   {
-    name: "More",
+    name: "更多",
     iconClass: "ri-more-fill",
     href: "javascript:void(0);",
     children: [
       {
-        name: 'About',
+        name: '关于',
         iconClass: 'ri-information-line',
         href: '/about',
       },
       {
-        name: 'Friends',
+        name: '友链',
         iconClass: 'ri-user-5-line',
         href: '/friends',
         target: '_self',
@@ -157,7 +157,7 @@ export const infoLinks = [
  */
 export const donate = {
   enable: false,
-  tip: "Thanks for the coffee !!!☕",
+  tip: "感谢请我喝杯咖啡！☕",
   wechatQRCode: "/WeChatQR.png",
   alipayQRCode: "/AliPayQR.png",
   paypalUrl: "https://paypal.me/xxxxxxxxxx",
@@ -199,7 +199,7 @@ export const comment = {
   type: 'giscus', // waline | giscus,
   walineConfig: {
     serverUrl: "",
-    lang: 'en',
+    lang: 'zh-CN',
     pageSize: 20,
     wordLimit: '',
     count: 5,
@@ -221,7 +221,7 @@ export const comment = {
     'data-emit-metadata': "",
     'data-input-position': "",
     'data-theme': "",
-    'data-lang': "",
+    'data-lang': "zh-CN",
     'crossorigin': "",
   }
 

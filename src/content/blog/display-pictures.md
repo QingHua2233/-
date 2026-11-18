@@ -1,12 +1,12 @@
 ---
-title: Pictures display
+title: 图片展示
 date: 2024-03-21
-description: Showcase your favorite images in more ways than one!
-tags: [feature]
-category: astro
+description: 使用多种布局，展示你喜爱的图片！
+tags: [功能]
+category: 主题使用
 ---
 
-### Display remote links
+### 显示网络图片
 
 ```md
 ![](https://astro-yi.obs.cn-east-3.myhuaweicloud.com/avatar.png)
@@ -14,7 +14,7 @@ category: astro
 
 ![](https://astro-yi.obs.cn-east-3.myhuaweicloud.com/avatar.png)
 
-### Show Local Pictures
+### 显示本地图片
 
 ```md
 ![](/avatar.png)
@@ -22,9 +22,9 @@ category: astro
 
 ![](/avatar.png)
 
-### Customize Local Images
+### 自定义本地图片
 
-Use html, set`style="width: 200px;"`
+使用 HTML，并设置 `style="width: 200px;"`。
 
 ```html
 <img src="/spinner.gif" data-src="/avatar.png" style="width:200px;">
@@ -32,7 +32,7 @@ Use html, set`style="width: 200px;"`
 
 <img src="/spinner.gif" data-src="/avatar.png" style="width:200px;">
 
-### One row, two columns.
+### 一行两列
 
 ```html
 
@@ -48,9 +48,9 @@ Use html, set`style="width: 200px;"`
 </div>
 
 
-For lazy loading: we need to enter `/spinner.gif` in `src`, and the real address of the image in `data-stc`. If you don't want to use this feature, just enter the image's real address in `src`.
+使用懒加载时，将 `src` 设置为 `/spinner.gif`，并将图片的真实地址填入 `data-src`。如果不使用懒加载，直接把真实图片地址填入 `src` 即可。
 
-### One row, three columns
+### 一行三列
 
 ```html
 
@@ -67,7 +67,7 @@ For lazy loading: we need to enter `/spinner.gif` in `src`, and the real address
   <img src="/spinner.gif" data-src="https://astro-yi.obs.cn-east-3.myhuaweicloud.com/pexels-photo-20523844.jpeg" >
 </div>
 
-### One row, four columns
+### 一行四列
 
 ```html
 
@@ -86,9 +86,9 @@ For lazy loading: we need to enter `/spinner.gif` in `src`, and the real address
   <img src="/spinner.gif" data-src="https://astro-yi.obs.cn-east-3.myhuaweicloud.com/pexels-photo-8536415.jpeg">
 </div>
 
-### Actually, it's all right.
+### 自由组合图片布局
 
-You can actually display it however you want, you just need to know a little bit about TailwindCss.
+了解一些 Tailwind CSS，就可以按自己的想法组合图片布局。
 
 ```html
 <div class="image-cols-2">
@@ -104,12 +104,12 @@ You can actually display it however you want, you just need to know a little bit
 <img src="/spinner.gif" class="object-fill" data-src="https://astro-yi.obs.cn-east-3.myhuaweicloud.com/pexels-photo-20523844.jpeg">
 </div>
 
-### Remember
+### 使用提示
 
-The theme provides three simple style classes that you can use directly.
+主题提供了三个可以直接使用的布局样式类。
 
-+ One row and two columns: `class="image-cols-2"`.
-+ one row and three columns: `class="image-cols-3"`.
-+ one row and four columns: `class="image-cols-4"`.
++ 一行两列： `class="image-cols-2"`.
++ 一行三列： `class="image-cols-3"`.
++ 一行四列： `class="image-cols-4"`.
 
-If you want a more complex display, check out TailwindCss.
+如需更复杂的布局，可以参考 Tailwind CSS。

@@ -65,22 +65,22 @@ export function remarkGithubCard() {
       const nDescription = h(
         `div#${cardUuid}-description`,
         {class: 'my-2'}, [
-          {type: "text", value: 'Waiting for api.github.com...',},
+          {type: "text", value: '正在加载 GitHub 仓库信息……',},
         ]
       )
 
       const nStars = h('div', {class: 'flex items-center'}, [
         h('i', {class: 'ri-star-line',}, []),
-        h(`div#${cardUuid}-stars`, {class: 'ml-1 mr-4'}, [{type: "text", value: "Waiting"}])
+        h(`div#${cardUuid}-stars`, {class: 'ml-1 mr-4'}, [{type: "text", value: "加载中"}])
       ])
       const nForks = h('div', {class: 'flex items-center'}, [
         h('i', {class: 'ri-git-fork-line',}, []),
-        h(`div#${cardUuid}-forks`, {class: 'ml-1 mr-4'}, [{type: "text", value: "Waiting"}])
+        h(`div#${cardUuid}-forks`, {class: 'ml-1 mr-4'}, [{type: "text", value: "加载中"}])
       ])
 
       const nLicense = h('div', {class: 'flex items-center'}, [
         h('i', {class: 'ri-copyright-line',}, []),
-        h(`div#${cardUuid}-license`, {class: 'ml-1 mr-4'}, [{type: "text", value: "Waiting"}])
+        h(`div#${cardUuid}-license`, {class: 'ml-1 mr-4'}, [{type: "text", value: "加载中"}])
       ])
       const nScript = h(
         `script#${cardUuid}-script`,
@@ -92,7 +92,7 @@ export function remarkGithubCard() {
         if (data.description) {
         document.getElementById('${cardUuid}-description').innerText = data.description.replace(/:[a-zA-Z0-9_]+:/g, '');
         } else {
-          document.getElementById('${cardUuid}-description').innerText = "Description not set"
+          document.getElementById('${cardUuid}-description').innerText = "暂无仓库描述"
         }
         document.getElementById('${cardUuid}-forks').innerText =  data.forks || 0;
         document.getElementById('${cardUuid}-stars').innerText = data.watchers || 0;
@@ -101,7 +101,7 @@ export function remarkGithubCard() {
         if (data.license?.spdx_id) {
           document.getElementById('${cardUuid}-license').innerText = data.license?.spdx_id
         } else {
-          document.getElementById('${cardUuid}-license').innerText = "No License"
+          document.getElementById('${cardUuid}-license').innerText = "未设置许可证"
         };
         document.getElementById('${cardUuid}-card').classList.remove("fetch-waiting");
         console.log("[GITHUB-CARD] Loaded card for ${repo} | ${cardUuid}.")

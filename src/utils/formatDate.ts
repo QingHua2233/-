@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import 'dayjs/locale/zh-cn';
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 import utc from "dayjs/plugin/utc";
 import {t, type Dict} from '../i18n/utils';

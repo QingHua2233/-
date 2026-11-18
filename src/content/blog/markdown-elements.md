@@ -1,101 +1,101 @@
 ---
-title: "A post of Markdown elements"
-description: "This post is for testing and listing a number of different markdown elements"
+title: "Markdown 元素示例"
+description: "本文用于测试和展示各种 Markdown 元素。"
 date: 2024-03-19
-tags: ["test", "markdown"]
+tags: ["测试", "Markdown"]
 ---
 
-## This is a H2 Heading
+## 这是二级标题
 
-### This is a H3 Heading
+### 这是三级标题
 
-#### This is a H4 Heading
+#### 这是四级标题
 
-##### This is a H5 Heading
+##### 这是五级标题
 
-###### This is a H6 Heading
+###### 这是六级标题
 
-## Horizontal Rules
-
----
-
----
+## 分隔线
 
 ---
 
-## Emphasis
+---
 
-**This is bold text**
+---
 
-_This is italic text_
+## 强调
 
-~~Strikethrough~~
+**这是粗体文字**
 
-## Quotes
+_这是斜体文字_
 
-"Double quotes" and 'single quotes'
+~~删除线~~
 
-## Blockquotes
+## 引号
 
-> Blockquotes can also be nested...
+“双引号”和‘单引号’
+
+## 引用块
+
+> 引用块也可以嵌套……
 >
-> > ...by using additional greater-than signs right next to each other...
+> > ……只需在行首连续添加大于号即可。
 
-## References
+## 脚注引用
 
-An example containing a clickable reference[^1] with a link to the source.
+这是一个包含可点击脚注[^1]的示例。
 
-Second example containing a reference[^2] with a link to the source.
+这是第二个包含脚注[^2]的示例。
 
-[^1]: Reference first footnote with a return to content link.
-[^2]: Second reference with a link.
+[^1]: 第一条脚注，包含返回正文的链接。
+[^2]: 第二条脚注，包含返回链接。
 
-If you check out this example in `src/content/post/markdown-elements/index.md`, you'll notice that the references and the heading "Footnotes" are added to the bottom of the page via the [remark-rehype](https://github.com/remarkjs/remark-rehype#options) plugin.
+本示例位于 `src/content/blog/markdown-elements.md`。脚注内容和“脚注”标题由 [remark-rehype](https://github.com/remarkjs/remark-rehype#options) 插件添加到页面底部。
 
-## Lists
+## 列表
 
-Unordered
+无序列表
 
-- Create a list by starting a line with `+`, `-`, or `*`
-- Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    - Ac tristique libero volutpat at
-    - Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-- Very easy!
+- 在行首使用 `+`、`-` 或 `*` 创建列表
+- 缩进两个空格即可创建子列表：
+  - 更换列表标记会开始一个新列表：
+    - 第一项示例内容
+    - 第二项示例内容
+    - 第三项示例内容
+- 就是这么简单！
 
-Ordered
+有序列表
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
+1. 第一项内容
+2. 第二项内容
+3. 第三项内容
 
-4. You can use sequential numbers...
-5. ...or keep all the numbers as `1.`
+4. 可以使用连续的编号……
+5. ……也可以全部使用 `1.`，编号会自动生成。
 
-Start numbering with offset:
+从指定编号开始：
 
-57. foo
-1. bar
+57. 示例一
+1. 示例二
 
-## Code
+## 代码
 
-Inline `code`
+行内 `code` 代码
 
-Indented code
+缩进代码
 
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
+    // 示例注释
+    第一行代码
+    第二行代码
+    第三行代码
 
-Block code "fences"
+围栏代码块
 
 ```
-Sample text here...
+这里是示例文本……
 ```
 
-Syntax highlighting
+语法高亮
 
 ```js
 var foo = function (bar) {
@@ -105,51 +105,51 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
-### Expressive code examples
+### Expressive Code 示例
 
-Adding a title
+添加标题
 
 ```js title="file.js"
-console.log("Title example");
+console.log("标题示例");
 ```
 
-A bash terminal
+Bash 终端
 
 ```bash
-echo "A base terminal example"
+echo "基础终端示例"
 ```
 
-Highlighting code lines
+高亮指定代码行
 
 ```js title="line-markers.js" del={2} ins={3-4} {6}
 function demo() {
-	console.log("this line is marked as deleted");
-	// This line and the next one are marked as inserted
-	console.log("this is the second inserted line");
+	console.log("这一行被标记为删除");
+	// 这一行和下一行被标记为新增
+	console.log("这是第二行新增内容");
 
-	return "this line uses the neutral default marker type";
+	return "这一行使用默认的中性标记";
 }
 ```
 
-[Expressive Code](https://expressive-code.com/) can do a ton more than shown here, and includes a lot of [customisation](https://expressive-code.com/reference/configuration/).
+[Expressive Code](https://expressive-code.com/) 还支持更多功能，并提供丰富的[自定义配置](https://expressive-code.com/reference/configuration/)。
 
-## Tables
+## 表格
 
-| Option | Description                                                               |
+| 选项 | 说明                                                               |
 | ------ | ------------------------------------------------------------------------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default.    |
-| ext    | extension to be used for dest files.                                      |
+| data   | 数据文件的路径，用于向模板传入数据。 |
+| engine | 用于处理模板的引擎，默认为 Handlebars。    |
+| ext    | 生成文件所使用的扩展名。                                      |
 
-Right aligned columns
+右对齐的列
 
-| Option |                                                               Description |
+| 选项 |                                                               说明 |
 | -----: | ------------------------------------------------------------------------: |
-|   data | path to data files to supply the data that will be passed into templates. |
-| engine |    engine to be used for processing templates. Handlebars is the default. |
-|    ext |                                      extension to be used for dest files. |
+|   data | 数据文件的路径，用于向模板传入数据。 |
+| engine |    用于处理模板的引擎，默认为 Handlebars。 |
+|    ext |                                      生成文件所使用的扩展名。 |
 
 
-## Links
+## 链接
 
-[Content from markdown-it](https://markdown-it.github.io/)
+[内容参考 markdown-it](https://markdown-it.github.io/)

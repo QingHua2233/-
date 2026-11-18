@@ -1,4 +1,5 @@
 export const zhCn = {
+  'post.dateFormat': 'YYYY年M月D日',
   'aside.note': '注意',
   'aside.tip': '提示',
   'aside.caution': '警告',

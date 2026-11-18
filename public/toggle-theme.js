@@ -25,8 +25,8 @@ function setPreference() {
 
 function reflectPreference() {
   document.firstElementChild.setAttribute("data-theme", themeValue);
-  document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
-  document.querySelector("#theme-btn-mobile")?.setAttribute("aria-label", themeValue);
+  document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue === "dark" ? "当前为深色主题，点击切换为浅色" : "当前为浅色主题，点击切换为深色");
+  document.querySelector("#theme-btn-mobile")?.setAttribute("aria-label", themeValue === "dark" ? "当前为深色主题，点击切换为浅色" : "当前为浅色主题，点击切换为深色");
 }
 
 // set early so no page flashes / CSS is made aware

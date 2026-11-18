@@ -1,15 +1,15 @@
 ---
 date: 2024-03-24
-title: New features
-description: More new features specific to this theme.
-tags: [feature]
-category: astro
+title: 新功能
+description: 了解本主题提供的更多特色功能。
+tags: [功能]
+category: 主题使用
 mermaid: true
 mathjax: true
 ogImage: https://astro-yi.obs.cn-east-3.myhuaweicloud.com/avatar.png
 ---
 
-### Support Remixicon
+### 支持 Remixicon 图标
 
 ```text
 :i{class="ri-poker-hearts-fill"}
@@ -19,25 +19,25 @@ ogImage: https://astro-yi.obs.cn-east-3.myhuaweicloud.com/avatar.png
 :i{class="ri-poker-hearts-fill"}
 :i{class="ri-poker-clubs-fill"}
 
-### Support Button
+### 支持按钮
 
 ```text
-:btn[Google]{href="https://www.google.com"}
+:btn[谷歌]{href="https://www.google.com"}
 ```
 
-:btn[Google]{href="https://www.google.com"}
+:btn[谷歌]{href="https://www.google.com"}
 
 ```text
 :::btn{href="#"}
-:i{class="ri-share-box-line"} Open in new tab
+:i{class="ri-share-box-line"} 在新标签页中打开
 :::
 ```
 
 :::btn{href="#"}
-:i{class="ri-share-box-line"} Open in new tab
+:i{class="ri-share-box-line"} 在新标签页中打开
 :::
 
-### Support Github Card
+### 支持 GitHub 仓库卡片
 
 ```text
 ::github{repo="cirry/astro-yi"}
@@ -45,75 +45,75 @@ ogImage: https://astro-yi.obs.cn-east-3.myhuaweicloud.com/avatar.png
 
 ::github{repo="cirry/astro-yi"}
 
-### Support Collapse
+### 支持折叠内容
 
 ```bash
 :::collapse
-Hello World!
+你好，世界！
 :::
 ```
 
 :::collapse
-Hello World!
+你好，世界！
 :::
 
-### Support Admonitions
+### 支持提示块
 
 ```markdown
-:::tip[Customized Title]
-hello world
+:::tip[自定义标题]
+你好，世界
 :::
 
 :::note
-note
+这是一条说明。
 :::
 
 :::caution
-caution
+请注意此处的风险。
 :::
 
 :::danger
-danger
+危险操作，请谨慎处理。
 :::
 
 ```
 
-:::tip[Customized Title]
-hello world
+:::tip[自定义标题]
+你好，世界
 :::
 
 :::note
-note
+这是一条说明。
 
 ```js
-console.log('hello world')
+console.log('你好，世界')
 ```
 
 :::
 
 :::caution
-caution
+请注意此处的风险。
 :::
 
 :::danger
-danger
+危险操作，请谨慎处理。
 :::
 
-### Support Mermaid
+### 支持 Mermaid 图表
 
-Use:
+使用方法：
 
-+ start with **```mermaid**
-+ end with **```**
-+ set markdown frontmatter `mermaid: true`.
+- 以此标记开始： **```mermaid**
+- 以此标记结束： **```**
+- 在文章顶部的配置中设置 `mermaid: true`。
 
-Mermaid Code:
+Mermaid 示例代码：
 
 ```html title="mermaid.md"
 classDiagram
-note "From Duck till Zebra"
+note "从鸭子到斑马"
 Animal <|-- Duck
-note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
+note for Duck "会飞\n会游泳\n会潜水\n还能帮助调试"
 Animal <|-- Fish
 Animal <|-- Zebra
 Animal : +int age
@@ -135,13 +135,13 @@ class Zebra{
 }
 ```
 
-Result:
+显示效果：
 
 ```mermaid
 classDiagram
-    note "From Duck till Zebra"
+    note "从鸭子到斑马"
     Animal <|-- Duck
-    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
+    note for Duck "会飞\n会游泳\n会潜水\n还能帮助调试"
     Animal <|-- Fish
     Animal <|-- Zebra
     Animal : +int age
@@ -163,51 +163,51 @@ classDiagram
     }
 ```
 
-### Support Mathjax
+### 支持 MathJax 公式
 
-+ set markdown frontmatter `mathjax: true`.
+- 在文章顶部的配置中设置 `mathjax: true`。
 
-#### Block Mode
-
-```yaml title="Mathjax.md"
----
-mathjax: true
----
-hello!
-$$ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $$
-hello!
-```
-
-hello!
-$$ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $$
-hello!
-
-#### Inline Mode
+#### 独立公式
 
 ```yaml title="Mathjax.md"
 ---
 mathjax: true
 ---
-hello! $ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $ hello!
+你好！
+$$ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $$
+你好！
 ```
 
-hello! $ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $ hello!
+你好！
+$$ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $$
+你好！
 
-### Integration with Expressive Code
+#### 行内公式
 
-For more usage, please refer to the official website [expressive-code](https://expressive-code.com/).
+```yaml title="Mathjax.md"
+---
+mathjax: true
+---
+你好！ $ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $ 你好！
+```
+
+你好！ $ \sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t $ 你好！
+
+### 集成 Expressive Code 代码展示
+
+更多用法请参阅 [Expressive Code 官方文档](https://expressive-code.com/)。
 
 ```js title="line-markers.js" del={2} ins={3-4} {6}
 function demo() {
-  console.log('this line is marked as deleted')
-  // This line and the next one are marked as inserted
-  console.log('this is the second inserted line')
+  console.log('这一行被标记为删除')
+  // 这一行和下一行被标记为新增
+  console.log('这是第二行新增内容')
 
-  return 'this line uses the neutral default marker type'
+  return '这一行使用默认的中性标记'
 }
 ```
 
-### Code folding is supported by default
+### 默认支持代码折叠
 
 ```js
 var myArr = [1, 2]
