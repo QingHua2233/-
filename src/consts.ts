@@ -26,8 +26,8 @@ export const site = {
   title: '怀旧网络论坛', // required
   favicon: '/favicon.svg', // required
   description: '欢迎来到我的小小互联网社区，记录生活，分享热爱。',
-  author: "Astro-Yi", // required
-  avatar: '/avatar.png', // required
+  author: "灰", // required
+  avatar: '/retro/owner-hui.jpg', // required
   url: 'https://273915.xyz', // required
   baseUrl: '', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
   motto: '行动胜于言语。',

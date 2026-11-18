@@ -1,11 +1,12 @@
 ---
 import getUrl from '@/utils/getUrl';
+import {site} from '@/consts';
 import {getCollectionByName} from '@/utils/getCollectionByName';
 const posts=await getCollectionByName('blog');
 const sections=[['闲聊茶馆','/category/闲聊茶馆'],['技术交流','/category/技术交流'],['个人随笔','/category/个人随笔'],['站务公告','/category/站务公告']];
 ---
 <aside class="forum-left" aria-label="站长及论坛导航">
-  <section class="forum-panel profile-panel"><h2 class="panel-title">站长信息</h2><div class="profile-content"><img class="owner-avatar" src={getUrl('/retro/avatar-1.svg')} alt="站长的像素头像" width="94" height="100" /><div class="owner-info"><h3>星空漫游者</h3><p>身份：<strong>站长 <span aria-label="皇冠">♛</span></strong></p><p>小站：273915.xyz</p><p>状态：慢慢建设中</p></div></div><p class="owner-motto">保持好奇，热爱生活！</p></section>
+  <section class="forum-panel profile-panel"><h2 class="panel-title">站长信息</h2><div class="profile-content"><img class="owner-avatar" src={getUrl(site.avatar)} alt="站长灰的头像" width="94" height="100" /><div class="owner-info"><h3>{site.author}</h3><p>身份：<strong>站长 <span aria-label="皇冠">♛</span></strong></p><p>小站：273915.xyz</p><p>状态：慢慢建设中</p></div></div><p class="owner-motto">保持好奇，热爱生活！</p></section>
   <section class="forum-panel"><h2 class="panel-title">论坛导航</h2><ul class="section-list">{sections.map(([name,url])=><li><a href={getUrl(url)}><span aria-hidden="true" class="folder-icon"></span>{name}<small>({posts.filter(p=>[p.data.category].flat().includes(name)).length})</small></a></li>)}</ul></section>
   <section class="forum-panel"><h2 class="panel-title">友情链接</h2><ul class="friend-list"><li><a href="https://github.com/QingHua2233" target="_blank" rel="noopener noreferrer">我的 GitHub <span>↗</span></a></li><li><a href={getUrl('/friends')}>小站邻居 <span>›</span></a></li><li><a href={getUrl('/rss.xml')}>订阅小站 <span>›</span></a></li><li><a href={getUrl('/about')}>认识一下站长 <span>›</span></a></li></ul></section>
   <p class="sidebar-signoff">在互联网的一隅，留一盏小灯。</p>
