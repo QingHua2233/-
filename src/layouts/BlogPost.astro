@@ -1,10 +1,9 @@
 ---
 import ForumShell from './ForumShell.astro';
-import Comment from '@/components/Comment.astro';
-import {comment} from '@/consts';
+import LocalComments from '@/components/LocalComments.astro';
 const {frontmatter,headings}=Astro.props;
 ---
-<ForumShell {...frontmatter}><a class="back-link" href="/blog/1">‹ 返回帖子列表</a><slot/>{frontmatter.comment&&comment.enable&&<Comment/>}</ForumShell>
+<ForumShell {...frontmatter}><a class="back-link" href="/blog/1">‹ 返回帖子列表</a><slot/>{frontmatter.comment && <LocalComments/>}</ForumShell>
 <script>
   import { Fancybox } from '@fancyapps/ui';
   import '@fancyapps/ui/dist/fancybox/fancybox.css';
