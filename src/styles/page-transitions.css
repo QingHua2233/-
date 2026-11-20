@@ -1,0 +1,34 @@
+/* 内容过渡总计 200ms；导航与侧栏保留在无动画的根快照中。 */
+html { scrollbar-gutter: stable; }
+
+@keyframes forum-content-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes forum-content-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+::view-transition-group(forum-content) {
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+}
+::view-transition-old(forum-content),
+::view-transition-new(forum-content) {
+  mix-blend-mode: normal;
+  height: 100%;
+}
+/* Astro 兼容模式按先出后入执行，入场无需再次等待。 */
+[data-astro-transition-fallback="new"] #forum-main {
+  animation-delay: 0ms !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  [data-astro-transition-fallback] #forum-main {
+    animation: none !important;
+  }
+}
