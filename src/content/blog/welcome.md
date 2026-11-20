@@ -4,7 +4,6 @@ date: 2026-11-18
 category: 站务公告
 description: 给路过的你，留一把椅子、一盏小灯。
 tags: [小站日常]
-sticky: 1
 ---
 
 ## 你好，欢迎光临

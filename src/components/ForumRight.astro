@@ -1,9 +1,9 @@
 ---
 import getUrl from '@/utils/getUrl';
 import {getCollectionByName} from '@/utils/getCollectionByName';
-import {orderBySticky} from '@/utils/orderBySticky';
+import {orderByPublicationDate} from '@/utils/orderByPublicationDate';
 const allPosts=await getCollectionByName('blog');
-const posts=orderBySticky(allPosts).slice(0,4);
+const posts=orderByPublicationDate(allPosts).slice(0,4);
 ---
 <aside class="forum-right" aria-label="社区动态及站点信息">
   <section class="forum-panel"><h2 class="panel-title"><span class="title-symbol">☏</span> 最新回复 <small class="heading-status">筹备中</small></h2><div class="reply-placeholder"><span class="bubble-pixels" aria-hidden="true">···</span><h3>等你来聊第一句</h3><p>这里将记录小站的新鲜回应。<br />回复功能正在慢慢准备中。</p></div><div class="right-section-label">先看看这些帖子</div><ul class="recent-list">{posts.map(p=><li><a href={getUrl('/blog/'+p.id)}>{p.data.title}</a><span>站长的分享</span></li>)}</ul></section>

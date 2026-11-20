@@ -1,14 +1,14 @@
 ---
 import ForumShell from '@/layouts/ForumShell.astro';
 import {getCollectionByName} from '@/utils/getCollectionByName';
-import {orderBySticky} from '@/utils/orderBySticky';
+import {orderByPublicationDate} from '@/utils/orderByPublicationDate';
 import getUrl from '@/utils/getUrl';
 import {site} from '@/consts';
-const posts=orderBySticky(await getCollectionByName('blog'));
+const posts=orderByPublicationDate(await getCollectionByName('blog'));
 const date=(v:Date)=>v.toISOString().slice(0,10);
 ---
 <ForumShell home={true}>
-  <section class="forum-panel discussion-panel"><div class="panel-title discussion-heading"><h2><span class="megaphone" aria-hidden="true">📣</span> 热门讨论区</h2><a href={getUrl('/blog/1')}>更多 »</a></div><div class="discussion-list">{posts.map((post,i)=><article class="discussion-row"><a class="thread-avatar-link" href={getUrl('/blog/'+post.id)} tabindex="-1" aria-hidden="true"><img src={getUrl(post.data.authorAvatar || site.avatar)} alt="" width="76" height="76" /></a><div class="thread-author">{post.data.author || site.author}<span>{post.data.authorRole || '站长'}</span></div><div class="thread-body"><h3><a href={getUrl('/blog/'+post.id)}><span class="thread-category">[{[post.data.category].flat()[0]}]</span> {post.data.title}</a></h3><p class="thread-meta">发表于 {date(post.data.date)} <span>·</span> <span class="thread-type">{i===0?'小站置顶':'生活与热爱'}</span></p><p class="thread-description">{post.data.description}</p></div>{i===0&&<span class="pin-label">置顶</span>}</article>)}</div><div class="list-bottom"><span><i class="online-dot"></i> 很高兴，在这里遇见你。</span><span>共 {posts.length} 篇帖子</span></div></section>
+  <section class="forum-panel discussion-panel"><div class="panel-title discussion-heading"><h2><span class="megaphone" aria-hidden="true">📣</span> 热门讨论区</h2><a href={getUrl('/blog/1')}>更多 »</a></div><div class="discussion-list">{posts.map(post=><article class="discussion-row"><a class="thread-avatar-link" href={getUrl('/blog/'+post.id)} tabindex="-1" aria-hidden="true"><img src={getUrl(post.data.authorAvatar || site.avatar)} alt="" width="76" height="76" /></a><div class="thread-author">{post.data.author || site.author}<span>{post.data.authorRole || '站长'}</span></div><div class="thread-body"><h3><a href={getUrl('/blog/'+post.id)}><span class="thread-category">[{[post.data.category].flat()[0]}]</span> {post.data.title}</a></h3><p class="thread-meta">发表于 {date(post.data.date)} <span>·</span> <span class="thread-type">生活与热爱</span></p><p class="thread-description">{post.data.description}</p></div></article>)}</div><div class="list-bottom"><span><i class="online-dot"></i> 很高兴，在这里遇见你。</span><span>共 {posts.length} 篇帖子</span></div></section>
   <section class="forum-panel announcement"><h2 class="panel-title"><span class="star-symbol" aria-hidden="true">★</span> 站长公告</h2><div class="announcement-content"><time datetime="2026-11-18">2026-11-18</time><p>欢迎来到我的小站！这里是一个存放回忆与兴趣的地方。</p><p>希望你能在这里找到共鸣，和我一起分享生活中的点滴。</p></div></section>
   <div class="welcome-strip"><span aria-hidden="true">✦</span> 世界很大，能在这里相遇，就很好。 <span aria-hidden="true">✦</span></div>
 </ForumShell>

@@ -3,7 +3,7 @@ title: 雨丝烤串
 author: 食客
 authorRole: 子管理
 authorAvatar: /retro/avatar-shike.jpg
-date: 2026-11-20
+date: 2026-11-20T12:46:24+08:00
 category: 个人随笔
 description: 雨丝烤串，作为异食谱的第一道，其特色不在于其味道，而在于其意境，也就是说雨丝烤串所含意境远远大于味道，更适合注重意境的食客。
 ---
