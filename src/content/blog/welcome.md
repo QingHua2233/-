@@ -1,6 +1,7 @@
 ---
 title: 欢迎来到我的小小互联网社区
 date: 2026-11-18
+sticky: 1
 category: 站务公告
 description: 给路过的你，留一把椅子、一盏小灯。
 tags: [小站日常]
