@@ -2,6 +2,12 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const commentEntry = z.object({
+  nickname: z.string(),
+  avatar: z.string(),
+  body: z.string(),
+});
+
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
@@ -20,6 +26,9 @@ const blog = defineCollection({
     toc: z.boolean().default(true).nullable(),
     donate: z.boolean().default(true).nullable(),
     comment: z.boolean().default(true).nullable(),
+    publicComments: z.array(commentEntry.extend({
+      replies: z.array(commentEntry).default([]),
+    })).optional(),
     ogImage: z.string().optional()
   }),
 });

@@ -1,11 +1,50 @@
 ---
+import getUrl from '@/utils/getUrl';
+
+interface CommentEntry {
+  nickname: string;
+  avatar: string;
+  body: string;
+}
+
+interface Props {
+  publicComments?: (CommentEntry & { replies: CommentEntry[] })[];
+}
+
+const { publicComments = [] } = Astro.props;
 ---
 <section class="comment-preview" aria-labelledby="comment-heading">
-  <div class="comment-heading"><h2 id="comment-heading">💬 帖子评论</h2><span>本地预览</span></div>
+  <div class="comment-heading"><h2 id="comment-heading">💬 帖子评论</h2>{publicComments.length === 0 && <span>本地预览</span>}</div>
   <div class="comment-inner">
-    <p class="comment-notice">评论仅保存在当前浏览器中，其他访客暂时看不到。</p>
-    <div class="comment-list" aria-live="polite"><p class="comment-empty">还没有评论，来写下第一句吧。</p></div>
+    <div class="comment-list">
+      {publicComments.map(comment => (
+        <article class="comment-item">
+          <img src={getUrl(comment.avatar)} alt="" width="48" height="48" />
+          <div class="comment-content">
+            <div class="comment-meta"><span class="comment-name">{comment.nickname}</span></div>
+            <p class="comment-body">{comment.body}</p>
+            {comment.replies.length > 0 && (
+              <div class="comment-replies" role="group" aria-label="留言回复">
+                {comment.replies.map(reply => (
+                  <article class="comment-item">
+                    <img src={getUrl(reply.avatar)} alt="" width="36" height="36" />
+                    <div class="comment-content">
+                      <div class="comment-meta"><span class="comment-name">{reply.nickname}</span></div>
+                      <p class="comment-body">{reply.body}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+      <div class="comment-local-list" aria-live="polite">
+        {publicComments.length === 0 && <p class="comment-empty">还没有评论，来写下第一句吧。</p>}
+      </div>
+    </div>
     <form class="comment-form">
+      <p class="comment-notice">你通过下方表单发表的评论仅保存在当前浏览器中。</p>
       <div class="comment-identity"><label class="avatar-picker"><img class="comment-avatar-preview" src="/retro/avatar-1.svg" alt="当前头像" /><span>选择头像</span><input class="comment-file" type="file" accept="image/jpeg,image/png,image/webp" /></label><label class="nickname-label">昵称<input name="nickname" type="text" maxlength="30" placeholder="输入昵称" required /></label></div>
       <label class="comment-text-label">评论内容<textarea name="body" maxlength="1000" rows="4" placeholder="写下你想说的话…" required></textarea></label>
       <div class="comment-actions"><span class="comment-status" role="status"></span><button type="submit">发表评论</button></div>
@@ -13,6 +52,19 @@
   </div>
 </section>
 <style is:global>
+.comment-replies {
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 2px solid #d5e3ee;
+}
+.comment-replies .comment-item {
+  padding: 8px 0 0;
+  border-bottom: 0;
+}
+.comment-replies .comment-item img {
+  width: 36px;
+  height: 36px;
+}
 .comment-preview{border:1px solid #a9bfd2;border-radius:5px;background:white;margin-top:24px;overflow:hidden;color:#263e53}.comment-heading{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px solid #acc3d9;background:linear-gradient(#e9f2fc,#dceaf7)}.comment-heading h2{font-size:18px;font-weight:700;margin:0;color:#172f4d}.comment-heading span{font-size:11px;color:#6687a2}.comment-inner{padding:16px}.comment-notice{margin:0 0 15px;font-size:12px;color:#7c8c98}.comment-list{margin-bottom:18px}.comment-empty{padding:16px 0;text-align:center;color:#91a3b3;font-size:13px}.comment-item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #e2ebf2}.comment-item img,.comment-avatar-preview{width:48px;height:48px;flex:none;object-fit:cover;border:1px solid #c8d9e7;border-radius:5px;background:#eef5fa}.comment-content{min-width:0;flex:1}.comment-meta{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.comment-name{font-weight:bold;color:#1d5688;font-size:14px;overflow-wrap:anywhere}.comment-date{font-size:11px;color:#92a2af}.comment-body{font-size:14px;color:#31485a;line-height:1.7;margin:4px 0;white-space:pre-wrap;overflow-wrap:anywhere}.comment-form{border-top:1px dashed #cedde9;padding-top:16px}.comment-identity{display:flex;gap:14px;align-items:center}.avatar-picker{position:relative;display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:#376b94;flex:none}.avatar-picker input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}.nickname-label,.comment-text-label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:#617a8d}.nickname-label{flex:1}.comment-form input[type=text],.comment-form textarea{width:100%;border:1px solid #bdd1e1;border-radius:3px;background:#fbfdff;color:#263e53;padding:8px 10px;font:inherit;font-size:14px}.comment-text-label{margin-top:12px}.comment-form textarea{resize:vertical;min-height:80px}.comment-form input:focus-visible,.comment-form textarea:focus-visible,.avatar-picker:focus-within{outline:2px solid #719cc0;outline-offset:2px}.comment-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}.comment-status{color:#a35a43;font-size:12px}.comment-actions button{background:linear-gradient(#3c76a9,#28598a);border:1px solid #27527a;border-radius:3px;color:white;font-size:13px;padding:6px 17px;cursor:pointer;white-space:nowrap}.comment-actions button:hover{background:#1e4e7d}@media(max-width:450px){.comment-inner{padding:12px}.avatar-picker{flex-direction:column;gap:2px}.nickname-label{align-self:center}}
 </style>
 <script>
@@ -22,17 +74,18 @@
     if (!section || section.dataset.ready) return;
     section.dataset.ready = 'true';
     const form = section.querySelector<HTMLFormElement>('.comment-form')!;
-    const list = section.querySelector<HTMLElement>('.comment-list')!;
+    const list = section.querySelector<HTMLElement>('.comment-local-list')!;
     const status = section.querySelector<HTMLElement>('.comment-status')!;
     const file = section.querySelector<HTMLInputElement>('.comment-file')!;
     const preview = section.querySelector<HTMLImageElement>('.comment-avatar-preview')!;
     const key = 'forum-local-comments:' + location.pathname.replace(/\/$/, '');
     let avatar = '';
     function read(): LocalComment[] { try { const data = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(data) ? data : []; } catch { return []; } }
+    const hasPublicComments = section.querySelector('.comment-list > .comment-item') !== null;
     function render() {
       list.replaceChildren();
       const entries = read();
-      if (!entries.length) { const p = document.createElement('p'); p.className='comment-empty'; p.textContent='还没有评论，来写下第一句吧。'; list.append(p); return; }
+      if (!entries.length && !hasPublicComments) { const p = document.createElement('p'); p.className='comment-empty'; p.textContent='还没有评论，来写下第一句吧。'; list.append(p); return; }
       for (const item of entries.slice().reverse()) {
         const article=document.createElement('article'); article.className='comment-item';
         const image=document.createElement('img'); image.src=item.avatar || '/retro/avatar-1.svg'; image.alt='';
