@@ -20,30 +20,20 @@ html { scrollbar-gutter: stable; }
 
 @keyframes nav-arrive { from { opacity: .65; } }
 
-.post-cover { display: grid; align-content: end; min-height: clamp(150px,24vw,245px); padding: clamp(18px,4vw,38px);
-  background: linear-gradient(0deg,#10223af5,transparent 95%),url('/retro/skyline.svg') center bottom / cover no-repeat,#456386;
-  color: white; border-radius: 12px; text-shadow: 0 2px 6px #11253c; }
-.retro-site .post-cover :is(h1,a,.text-skin-dodge) { color: #fff; }
-.retro-site .post-cover h1 { font-size: clamp(1.55rem,4vw,2.4rem); line-height: 1.25; margin: 0 0 .6rem; }
-.retro-site .post-reading-card { background: rgba(22,37,53,.96); color: #edf2f6; border-radius: 12px; padding: clamp(18px,4vw,36px); line-height: 1.85; }
-.retro-site .post-reading-card :is(h1,h2,h3,h4,h5,h6,strong) { color: #fff; }
-.retro-site .post-reading-card a { color: #9ddac9; }
-.retro-site .post-reading-card :is(pre,code) { color: #eaf5ff; background-color: #24374a; }
 @media (prefers-reduced-motion: reduce) {
   .falling-petals { display: none; }
-  .route-enter :is(#forum-main,.post-reading-card,.forum-nav),.route-progress[data-phase] { animation: none; }
+  .route-enter :is(#forum-main,.forum-nav),.route-progress[data-phase] { animation: none; }
 }
 
 /* 文章模板自带入场状态，站内换页和浏览器整页载入都从首帧播放。 */
 @media (prefers-reduced-motion: no-preference) {
-  .article-route .forum-banner,
-  .article-route .post-cover {
+  .article-route .forum-banner {
     animation: article-cover-in 560ms cubic-bezier(.22,.61,.36,1) backwards;
   }
-  .article-route .post-cover > div {
+  .article-route .inner-content :is(h1.break-all, h1.break-all + div) {
     animation: article-title-in 420ms 90ms ease-out backwards;
   }
-  .article-route .post-reading-card {
+  .article-route .markdown-body {
     animation: article-body-in 520ms 130ms cubic-bezier(.22,.61,.36,1) backwards;
   }
   .article-route .forum-nav {
