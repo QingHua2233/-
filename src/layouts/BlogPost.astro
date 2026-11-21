@@ -3,7 +3,7 @@ import ForumShell from './ForumShell.astro';
 import LocalComments from '@/components/LocalComments.astro';
 const {frontmatter,headings}=Astro.props;
 ---
-<ForumShell {...frontmatter}><a class="back-link" href="/blog/1">‹ 返回帖子列表</a><slot/>{frontmatter.comment && <LocalComments publicComments={frontmatter.publicComments}/>}</ForumShell>
+<ForumShell {...frontmatter} article={true}><a class="back-link" href="/blog/1">‹ 返回帖子列表</a><slot/>{frontmatter.comment && <LocalComments publicComments={frontmatter.publicComments}/>}</ForumShell>
 <script>
   import { Fancybox } from '@fancyapps/ui';
   import '@fancyapps/ui/dist/fancybox/fancybox.css';
