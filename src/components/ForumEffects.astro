@@ -1,0 +1,45 @@
+---
+const petals = Array.from({length: 17}, (_, i) => ({
+  x: (i * 37) % 100, duration: 10 + i % 7, phase: -(i * 4.7 + 2), size: 6 + i % 6,
+}));
+---
+<div class="forum-effects" transition:persist="forum-effects" aria-hidden="true">
+  <div class="route-progress"></div>
+  <div class="falling-petals">{petals.map(p =>
+    <i style={`left:${p.x}%;--fall:${p.duration}s;--phase:${p.phase}s;--petal:${p.size}px`}></i>
+  )}</div>
+</div>
+<script>
+  import type { TransitionBeforePreparationEvent, TransitionBeforeSwapEvent } from 'astro:transitions/client';
+  const progress = () => document.querySelector<HTMLElement>('.route-progress');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let resetTimer: number;
+  document.addEventListener('astro:before-preparation', (raw) => {
+    const event = raw as TransitionBeforePreparationEvent;
+    clearTimeout(resetTimer);
+    const bar = progress();
+    if (bar) bar.dataset.phase = 'loading';
+    const load = event.loader;
+    event.loader = async () => {
+      await load();
+      if (event.signal.aborted || event.defaultPrevented || reduced.matches) return;
+      const main = document.querySelector('#forum-main');
+      const exit = main?.animate([{opacity: 1}, {opacity: 0}], {duration: 120, fill: 'forwards'});
+      if (!exit) return;
+      event.signal.addEventListener('abort', () => exit.cancel(), {once:true});
+      await exit.finished.catch(() => {});
+    };
+  });
+  document.addEventListener('astro:before-swap', (raw) => {
+    // 让花瓣和进度条继续使用真实 DOM，避免全屏快照把它们定格。
+    (raw as TransitionBeforeSwapEvent).viewTransition.skipTransition();
+  });
+  document.addEventListener('astro:after-swap', () => {
+    document.body.classList.add('route-enter');
+    const bar = progress();
+    if (bar) {
+      bar.dataset.phase = 'done';
+      resetTimer = window.setTimeout(() => delete bar.dataset.phase, 340);
+    }
+  });
+</script>

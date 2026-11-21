@@ -6,16 +6,8 @@ import ForumRight from '@/components/ForumRight.astro';
 import ForumFooter from '@/components/ForumFooter.astro';
 import '@/styles/forum.css';
 import '@/styles/page-transitions.css';
-import type { TransitionDirectionalAnimations } from 'astro';
+import ForumEffects from '@/components/ForumEffects.astro';
 
-const contentAnimation = {
-  old: { name: 'forum-content-out', duration: '80ms', easing: 'ease-out', fillMode: 'both' },
-  new: { name: 'forum-content-in', duration: '120ms', delay: '80ms', easing: 'ease-out', fillMode: 'both' },
-};
-const pageTransition: TransitionDirectionalAnimations = {
-  forwards: contentAnimation,
-  backwards: contentAnimation,
-};
 const {title,description,mathjax=false,mermaid=false,ogImage,home=false}=Astro.props;
 ---
-<html lang="zh-CN" transition:animate="none"><BaseHead title={title} description={description} mathjax={mathjax} mermaid={mermaid} ogImage={ogImage}/><body class="retro-site"><a class="skip-content" href="#forum-main">跳到主要内容</a><div class="forum-wrap"><ForumHeader/><div class="forum-columns"><ForumLeft/><main transition:name="forum-content" transition:animate={pageTransition} id="forum-main" class:list={['forum-main',{'inner-page':!home}]}>{home?<slot/>:<section class="forum-panel page-content"><div class="page-breadcrumb"><a href="/">论坛首页</a><span>»</span><span>{title||'小站内容'}</span></div><div class="inner-content"><slot/></div></section>}</main><ForumRight/></div><ForumFooter/></div></body></html>
+<html lang="zh-CN" transition:animate="none"><BaseHead title={title} description={description} mathjax={mathjax} mermaid={mermaid} ogImage={ogImage}/><body class="retro-site"><ForumEffects/><a class="skip-content" href="#forum-main">跳到主要内容</a><div class="forum-wrap"><ForumHeader/><div class="forum-columns"><ForumLeft/><main id="forum-main" class:list={['forum-main',{'inner-page':!home}]}>{home?<slot/>:<section class="forum-panel page-content"><div class="page-breadcrumb"><a href="/">论坛首页</a><span>»</span><span>{title||'小站内容'}</span></div><div class="inner-content"><slot/></div></section>}</main><ForumRight/></div><ForumFooter/></div></body></html>

@@ -39,9 +39,9 @@ if (sortPosts[currentPostIndex + 1]) {
 ---
 <BlogPost frontmatter={entry.data} headings={headings}>
   <div>
-    <PostTitle {...entry.data} lastModified={lastModified} readingTime={readingTime}></PostTitle>
+    <header class="post-cover"><PostTitle {...entry.data} lastModified={lastModified} readingTime={readingTime}></PostTitle></header>
     <div class="divider-horizontal"></div>
-    <article class="markdown-body">
+    <article class="markdown-body post-reading-card">
       <Content/>
     </article>
     <div class="divider-horizontal"></div>

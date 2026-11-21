@@ -1,34 +1,35 @@
-/* 内容过渡总计 200ms；导航与侧栏保留在无动画的根快照中。 */
 html { scrollbar-gutter: stable; }
+.forum-effects { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 70; }
+.route-progress { height: 3px; background: #48ce9b; transform: scaleX(0); transform-origin: left; }
+.route-progress[data-phase="loading"] { animation: route-progress 2.4s cubic-bezier(.1,.7,.2,1) both; }
+.route-progress[data-phase="done"] { animation: route-done .32s ease-out both; }
+@keyframes route-progress { from { transform: scaleX(.02); } to { transform: scaleX(.82); } }
+@keyframes route-done { 0% { transform: scaleX(.82); } 40%,100% { transform: scaleX(1); } 100% { opacity: 0; } }
 
-@keyframes forum-content-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-@keyframes forum-content-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-::view-transition-group(forum-content) {
-  animation-duration: 200ms;
-  animation-timing-function: ease-out;
-}
-::view-transition-old(forum-content),
-::view-transition-new(forum-content) {
-  mix-blend-mode: normal;
-  height: 100%;
-}
-/* Astro 兼容模式按先出后入执行，入场无需再次等待。 */
-[data-astro-transition-fallback="new"] #forum-main {
-  animation-delay: 0ms !important;
-}
+.falling-petals i { position: absolute; top: -20px; animation: petal-fall var(--fall) linear var(--phase) infinite; }
+.falling-petals i::before { content: ""; display: block; width: var(--petal); height: calc(var(--petal) * .7);
+  border-radius: 80% 10% 70% 28%; background: linear-gradient(135deg,#fff2ee,#e99db7); opacity: .82;
+  animation: petal-turn 3.6s ease-in-out var(--phase) infinite alternate; }
+@keyframes petal-fall { to { transform: translate(-6vw,calc(100vh + 40px)); } }
+@keyframes petal-turn { from { transform: translateX(-12px) rotate(-35deg) scaleX(.55); } to { transform: translateX(12px) rotate(95deg); } }
+
+.route-enter #forum-main { animation: forum-arrive .55s cubic-bezier(.22,.61,.36,1) both; }
+.route-enter .post-reading-card { animation: card-arrive .42s .1s ease-out backwards; }
+.route-enter .forum-nav { animation: nav-arrive .24s .35s ease-out backwards; }
+@keyframes forum-arrive { from { opacity: .15; filter: blur(18px) brightness(.76); } to { opacity: 1; filter: none; } }
+@keyframes card-arrive { from { opacity: .2; transform: translateY(5px); } }
+@keyframes nav-arrive { from { opacity: .65; } }
+
+.post-cover { display: grid; align-content: end; min-height: clamp(150px,24vw,245px); padding: clamp(18px,4vw,38px);
+  background: linear-gradient(0deg,#10223af5,transparent 95%),url('/retro/skyline.svg') center bottom / cover no-repeat,#456386;
+  color: white; border-radius: 12px; text-shadow: 0 2px 6px #11253c; }
+.retro-site .post-cover :is(h1,a,.text-skin-dodge) { color: #fff; }
+.retro-site .post-cover h1 { font-size: clamp(1.55rem,4vw,2.4rem); line-height: 1.25; margin: 0 0 .6rem; }
+.retro-site .post-reading-card { background: rgba(22,37,53,.96); color: #edf2f6; border-radius: 12px; padding: clamp(18px,4vw,36px); line-height: 1.85; }
+.retro-site .post-reading-card :is(h1,h2,h3,h4,h5,h6,strong) { color: #fff; }
+.retro-site .post-reading-card a { color: #9ddac9; }
+.retro-site .post-reading-card :is(pre,code) { color: #eaf5ff; background-color: #24374a; }
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-  [data-astro-transition-fallback] #forum-main {
-    animation: none !important;
-  }
+  .falling-petals { display: none; }
+  .route-enter :is(#forum-main,.post-reading-card,.forum-nav),.route-progress[data-phase] { animation: none; }
 }
